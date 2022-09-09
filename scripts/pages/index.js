@@ -5,9 +5,9 @@ class App {
   }
 
   async main() {
-    const photographersData = await this.photographersApi.getPhotographers();
-    console.log(photographersData);
-    const photographers = photographersData.photographers;
+    const photographers = await this.photographersApi.getPhotographers();
+    console.log(photographers);
+    // const photographers = photographersData.photographers;
 
     photographers.forEach((photograph) => {
       const Template = new photographerFactory(photograph);

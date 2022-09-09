@@ -13,6 +13,9 @@ main {
   background-color: #fafafa;
   height: 300px;
   margin: 0 100px;
+}
+.photograph {
+  margin-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -189,7 +192,6 @@ form input {
 
 .media-container {
   margin: 0 100px;
-  /* margin-left: 100px; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
@@ -210,11 +212,16 @@ form input {
   object-fit: cover;
   border-radius: 5px;
 }
+.media video:first-child {
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
 .media-name {
   margin-top: -1rem;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
 }
 .media-name p:first-child {
   font-weight: 400;
@@ -227,14 +234,13 @@ form input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 2.8rem;
-}
-.like p {
-  color: #911c1c;
+  width: 4rem;
 }
 
-svg {
-  width: 22px;
-  height: 30px;
-  fill: #911c1c;
+fa-solid {
+  margin-left: 0.5rem;
+}
+i {
+  width: 30px;
+  color: #911c1c;
 }
