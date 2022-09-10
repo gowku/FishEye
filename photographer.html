@@ -8,7 +8,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header>
+    <header class="header">
       <a href="/index.html">
         <img src="assets/images/logo.png" class="logo" />
       </a>
@@ -27,16 +27,28 @@
     </main>
     <div id="contact_modal">
       <div class="modal">
-        <header>
-          <h2>Contactez-moi</h2>
+        <header class="modal-header">
+          <!-- ajout div contact-name-->
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-        <form>
+        <form method="get">
           <div>
-            <label>Prénom</label>
-            <input />
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" />
           </div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" />
+          </div>
+          <div>
+            <label for="message">Votre message</label>
+            <input type="text" class="message" id="message" />
+          </div>
+          <button class="contact_button" type="submit" onclick="closeModal()">Envoyer</button>
         </form>
       </div>
     </div>
