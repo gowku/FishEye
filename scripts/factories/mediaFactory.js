@@ -8,7 +8,7 @@ class photographMedia {
     $mediaWrapper.classList.add("media");
 
     const photographImg = `
-      <img src="assets/Sample Photos/${this.media.photographerId}/${this.media.image}" alt="" />
+      <img src="assets/Sample Photos/${this.media.photographerId}/${this.media.image}" alt=""  onclick="displayLightbox()" />
       <div class="media-name">
         <p>${this.media.title}</p>
         <div class="like">
@@ -19,7 +19,7 @@ class photographMedia {
     `;
 
     const photographVideo = `
-      <video controls width="250">
+      <video controls width="250"  onclick="displayLightbox()">
         <source src="assets/Sample Photos/${this.media.photographerId}/${this.media.video}" type="video/mp4" />
         <video />
         <div class="media-name">
@@ -39,5 +39,37 @@ class photographMedia {
     }
 
     return $mediaWrapper;
+  }
+}
+
+class lightboxMedia extends photographMedia {
+  constructor(media) {
+    super(media);
+  }
+
+  getLightboxMedia() {
+    const $lightboxMediaWrapper = document.createElement("div");
+    $lightboxMediaWrapper.classList.add("lightbox-media");
+    // $lightboxMediaWrapper.classList.add("active");
+
+    const lightboxMediaImg = `
+    <img src="assets/Sample Photos/${this.media.photographerId}/${this.media.image}" alt="" />
+            <p>${this.media.title}</p>
+    `;
+
+    const lightboxMediaVideo = `
+    <video controls width="250"  >
+        <source src="assets/Sample Photos/${this.media.photographerId}/${this.media.video}" type="video/mp4" />
+        <video />
+          <p>${this.media.title}</p>
+    `;
+
+    if (this.media.video != undefined) {
+      $lightboxMediaWrapper.innerHTML = lightboxMediaVideo;
+    } else {
+      $lightboxMediaWrapper.innerHTML = lightboxMediaImg;
+    }
+
+    return $lightboxMediaWrapper;
   }
 }

@@ -25,6 +25,21 @@
       </div>
       <section class="media-container"></section>
     </main>
+    <div id="lightbox_modal_container">
+      <div class="lightbox">
+        <div class="left"><i class="fa-sharp fa-solid fa-chevron-left fa-3x precedent"></i></div>
+        <div class="lightbox-media-container">
+          <!-- <div class="lightbox-media">
+            <img src="assets/Sample Photos/243/Travel_Lonesome.jpg" alt="" />
+            <p>Arc-en-ciel</p>
+          </div> -->
+        </div>
+        <div class="right">
+          <i class="fa-sharp fa-solid fa-xmark fa-3x" onclick="closeLightbox()"></i>
+          <i class="fa-sharp fa-solid fa-chevron-right fa-3x suivant"></i>
+        </div>
+      </div>
+    </div>
     <div id="contact_modal">
       <div class="modal">
         <header class="modal-header">
@@ -58,5 +73,6 @@
     <script src="/scripts/factories/mediaFactory.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/lightboxModal.js"></script>
   </body>
 </html>

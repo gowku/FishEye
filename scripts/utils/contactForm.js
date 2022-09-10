@@ -14,7 +14,7 @@ const email = document.getElementById("email");
 const message = document.getElementById("message");
 const btnSubmit = document.querySelector(".contact_button");
 
-console.log(prenom, nom, email, message);
+// console.log(prenom, nom, email, message);
 
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();

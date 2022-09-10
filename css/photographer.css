@@ -1,4 +1,5 @@
-#contact_modal {
+#contact_modal,
+#lightbox_modal_container {
   display: none;
   position: fixed;
   top: 0;
@@ -245,12 +246,14 @@ form input {
   height: 300px;
   object-fit: cover;
   border-radius: 5px;
+  cursor: pointer;
 }
 .media video:first-child {
   width: 350px;
   height: 300px;
   object-fit: cover;
   border-radius: 5px;
+  cursor: pointer;
 }
 .media-name {
   margin-top: -1rem;
@@ -277,4 +280,66 @@ fa-solid {
 i {
   width: 30px;
   color: #911c1c;
+}
+
+.lightbox {
+  width: 1253px;
+  height: 984px;
+  border: 2px solid #95fff9;
+  background-color: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lightbox-media-container {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.lightbox-media-container img,
+video {
+  width: 1050px;
+  height: 900px;
+  margin-bottom: -1.3rem;
+  border-radius: 5px;
+}
+.lightbox-media-container p {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+  color: #911c1c;
+}
+
+.lightbox-media {
+  display: none;
+}
+.lightbox-media.active {
+  display: block;
+}
+
+.left,
+.right {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.left i {
+  padding-right: 0.5rem;
+  cursor: pointer;
+}
+.right i {
+  cursor: pointer;
+}
+
+.right i:first-child {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
 }

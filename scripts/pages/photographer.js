@@ -8,14 +8,17 @@ class App {
 
     this.$mediaWrapper = document.querySelector("section");
     this.mediaApi = new MediaApi("../../data/photographers.json");
+
+    this.$lightboxWrapper = document.querySelector(".lightbox-media-container");
+    // console.log($photographNameWrapper);
   }
 
   async main() {
     const photographers = await this.photographersApi.getPhotographers();
-    console.log(photographers);
+    // console.log(photographers);
 
     const media = await this.mediaApi.getMedia();
-    console.log(media);
+    // console.log(media);
 
     for (let i = 0; i < photographers.length; i++) {
       if (photographers[i].id == urlId) {
@@ -33,6 +36,10 @@ class App {
         const TemplateMedia = new photographMedia(media[j]);
         // console.log(TemplateMedia);
         this.$mediaWrapper.appendChild(TemplateMedia.getMedia());
+
+        const TemplateLightbox = new lightboxMedia(media[j]);
+        console.log(TemplateLightbox);
+        this.$lightboxWrapper.appendChild(TemplateLightbox.getLightboxMedia());
       }
     }
   }
