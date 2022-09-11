@@ -12,24 +12,23 @@ class photographMedia {
       <div class="media-name">
         <p>${this.media.title}</p>
         <div class="like">
-          <p>${this.media.likes}</p>
-          <i class="fa-solid fa-heart fa-lg"></i>
+          <p class='numberLikes'>${this.media.likes}</p>
+          <i class="fa-solid fa-heart fa-lg btn-like"></i>
         </div>
       </div>
     `;
 
     const photographVideo = `
-      <video controls width="250"  onclick="displayLightbox()">
+      <video controls width="350"  onclick="displayLightbox()">
         <source src="assets/Sample Photos/${this.media.photographerId}/${this.media.video}" type="video/mp4" />
-        <video />
-        <div class="media-name">
+        </video>
+        <div class="media-name video">
           <p>${this.media.title}</p>
           <div class="like">
-            <p>${this.media.likes}</p>
-            <i class="fa-solid fa-heart fa-lg"></i>
+            <p class='numberLikes'>${this.media.likes}</p>
+            <i class="fa-solid fa-heart fa-lg btn-like"></i>
           </div>
         </div>
-      </video>
     `;
 
     if (this.media.video != undefined) {
@@ -48,7 +47,7 @@ class lightboxMedia extends photographMedia {
   }
 
   getLightboxMedia() {
-    const $lightboxMediaWrapper = document.createElement("div");
+    const $lightboxMediaWrapper = document.createElement("li");
     $lightboxMediaWrapper.classList.add("lightbox-media");
     // $lightboxMediaWrapper.classList.add("active");
 

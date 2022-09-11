@@ -28,12 +28,12 @@
     <div id="lightbox_modal_container">
       <div class="lightbox">
         <div class="left"><i class="fa-sharp fa-solid fa-chevron-left fa-3x precedent"></i></div>
-        <div class="lightbox-media-container">
+        <ul class="lightbox-media-container">
           <!-- <div class="lightbox-media">
             <img src="assets/Sample Photos/243/Travel_Lonesome.jpg" alt="" />
             <p>Arc-en-ciel</p>
           </div> -->
-        </div>
+        </ul>
         <div class="right">
           <i class="fa-sharp fa-solid fa-xmark fa-3x" onclick="closeLightbox()"></i>
           <i class="fa-sharp fa-solid fa-chevron-right fa-3x suivant"></i>
@@ -47,19 +47,19 @@
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
         <form method="get">
-          <div>
+          <div class="formData">
             <label for="prenom">Prénom</label>
             <input type="text" id="prenom" />
           </div>
-          <div>
+          <div class="formData">
             <label for="nom">Nom</label>
             <input type="text" id="nom" />
           </div>
-          <div>
+          <div class="formData">
             <label for="email">Email</label>
             <input id="email" />
           </div>
-          <div>
+          <div class="formData">
             <label for="message">Votre message</label>
             <input type="text" class="message" id="message" />
           </div>

@@ -6,12 +6,12 @@ class App {
 
   async main() {
     const photographers = await this.photographersApi.getPhotographers();
-    console.log(photographers);
+    // console.log(photographers);
     // const photographers = photographersData.photographers;
 
     photographers.forEach((photograph) => {
       const Template = new photographerFactory(photograph);
-      console.log(Template.getUserCardDOM());
+      // console.log(Template.getUserCardDOM());
       this.$photographersWrapper.appendChild(Template.getUserCardDOM());
     });
   }

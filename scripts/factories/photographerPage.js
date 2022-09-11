@@ -17,8 +17,8 @@ class PhotographPageFactory {
       <img src="assets/photographers/${this.photograph.portrait}" alt="photo" />
       <div class="photograph-price">
         <div class="price-like">
-          <p>297 081</p>
-          <i class="fa-solid fa-heart fa-lg"></i>
+          <p class='totalLikes'></p>
+          <i class="fa-solid fa-heart fa-lg "></i>
         </div>
         <div class="price-price">
           <p>${this.photograph.price}€/jour</p>

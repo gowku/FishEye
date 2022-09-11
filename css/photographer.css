@@ -221,6 +221,7 @@ form input {
   border: none;
   border-radius: 5px;
 }
+
 .message {
   height: 170px;
 }
@@ -235,7 +236,7 @@ form input {
 .media {
   margin: auto;
   width: 350px;
-  height: 351px;
+  /* height: 351px; */
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -266,12 +267,22 @@ form input {
   line-height: 31px;
   color: #911c1c;
 }
+.video p:first-child {
+  margin-top: 2.5rem;
+}
+.video .like i {
+  margin-top: 1rem;
+  margin-left: 0.3rem;
+}
 
 .like {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 4rem;
+}
+.like i {
+  cursor: pointer;
 }
 
 fa-solid {
@@ -308,7 +319,9 @@ video {
   height: 900px;
   margin-bottom: -1.3rem;
   border-radius: 5px;
+  object-fit: cover;
 }
+
 .lightbox-media-container p {
   font-weight: 400;
   font-size: 24px;
@@ -336,6 +349,7 @@ video {
 }
 .right i {
   cursor: pointer;
+  margin-left: -0.5rem;
 }
 
 .right i:first-child {
