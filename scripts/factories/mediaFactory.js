@@ -4,8 +4,9 @@ class photographMedia {
   }
 
   getMedia() {
-    const $mediaWrapper = document.createElement("div");
+    const $mediaWrapper = document.createElement("article");
     $mediaWrapper.classList.add("media");
+    $mediaWrapper.setAttribute("tabindex", "0");
 
     const photographImg = `
       <img src="assets/Sample Photos/${this.media.photographerId}/${this.media.image}" alt=""  onclick="displayLightbox()" />
@@ -52,7 +53,7 @@ class lightboxMedia extends photographMedia {
     // $lightboxMediaWrapper.classList.add("active");
 
     const lightboxMediaImg = `
-    <img src="assets/Sample Photos/${this.media.photographerId}/${this.media.image}" alt="" />
+    <img src="assets/Sample Photos/${this.media.photographerId}/${this.media.image}" alt="${this.media.title}" />
             <p>${this.media.title}</p>
     `;
 

@@ -13,8 +13,8 @@ class PhotographPageFactory {
         <p>${this.photograph.city}, ${this.photograph.country}</p>
         <p>${this.photograph.tagline}</p>
       </div>
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      <img src="assets/photographers/${this.photograph.portrait}" alt="photo" />
+      <button class="contact_button" onclick="displayModal()"tabindex="0" aria-label="contact Me">Contactez-moi</button>
+      <img src="assets/photographers/${this.photograph.portrait}" alt="${this.photograph.name}" />
       <div class="photograph-price">
         <div class="price-like">
           <p class='totalLikes'></p>

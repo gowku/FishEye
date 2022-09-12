@@ -71,6 +71,8 @@ main {
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: -2rem;
+  margin-top: 2rem;
 }
 
 .sort {
@@ -376,4 +378,8 @@ video {
   position: absolute;
   top: 3rem;
   right: 3rem;
+}
+.noscroll {
+  height: 100%;
+  overflow: hidden;
 }

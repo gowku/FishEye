@@ -109,6 +109,9 @@ class App {
         break;
     }
     // printMedia();
+    // const item = document.activeElement;
+    // console.log(item);
+
     //-------------------LIKES-------------------------------
     const btnLike = document.getElementsByClassName("btn-like");
     // console.log(btnLike);
@@ -174,13 +177,42 @@ class App {
     }
     precedent.addEventListener("click", slidePrecedente);
 
+    const focusableElements = modal.getElementsByClassName("focusableElements");
+    const firstFocusableElements = modal.getElementsByClassName("focusableElements")[0];
+    const lastFocusableElements = modal.getElementsByClassName("focusableElements")[focusableElements.length - 1];
+    // console.log(focusableElements);
+
     function keyPress(e) {
-      console.log(e);
+      console.log(e.target.className);
+
+      if (e.keyCode === 16) {
+        if (document.activeElement === firstFocusableElements) {
+          lastFocusableElements.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastFocusableElements) {
+          firstFocusableElements.focus();
+          e.preventDefault();
+        }
+      }
+
+      if (e.target.className == "focusableElements closeModalForm" && e.keyCode === 13) {
+        closeModal();
+      }
+      // console.log(document.activeElement.classList);
+
+      if (e.target.className == "media" && e.keyCode === 13) {
+        displayLightbox();
+      }
 
       if (e.keyCode === 37) {
         slidePrecedente();
       } else if (e.keyCode === 39) {
         slideSuivante();
+      } else if (e.keyCode === 27) {
+        closeLightbox();
+        closeModal();
       }
     }
     document.addEventListener("keydown", keyPress);

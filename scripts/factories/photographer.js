@@ -5,18 +5,21 @@ function photographerFactory(data) {
   const picture = `assets/photographers/${portrait}`;
 
   function getUserCardDOM() {
-    const $wrapper = document.createElement("a");
-    $wrapper.setAttribute("href", `./photographer.html?id=${id}`);
+    const $wrapper = document.createElement("article");
+    // $wrapper.setAttribute("href", `./photographer.html?id=${id}`);
 
     const article = `
   
-                       <article>
+                      
+                       <a href="./photographer.html?id=${id}">
                            <img src=${picture} alt='${name}'>
                            <h2>${name}</h2>
+                           </a>
+                           
                            <p class='location'>${city}, ${country}</p>
                            <p> ${tagline} </p>
                            <p>${price}€/jour</p>                      
-                       </article>
+                    
                     
                     `;
 

@@ -8,62 +8,70 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header class="header">
+    <header class="header" role="banner">
       <a href="/index.html">
-        <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
       </a>
     </header>
     <main id="main">
       <div class="photograph-header"></div>
       <div class="sort">
-        <label>Trier par</label>
-        <select class="dropdown-menu">
-          <option>Popularité</option>
-          <option>Date</option>
-          <option>Titre</option>
+        <label for="sort">Trier par</label>
+        <select id="sort" class="dropdown-menu">
+          <option value="Popularité">Popularité</option>
+          <option value="Date">Date</option>
+          <option value="Titre">Titre</option>
         </select>
       </div>
       <section class="media-container"></section>
     </main>
     <div id="lightbox_modal_container">
-      <div class="lightbox">
-        <div class="left"><i class="fa-sharp fa-solid fa-chevron-left fa-3x precedent"></i></div>
+      <div class="lightbox" aria-label="image closeup view">
+        <div class="left" aria-label="previous image"><i class="fa-sharp fa-solid fa-chevron-left fa-3x precedent"></i></div>
         <ul class="lightbox-media-container">
           <!-- <div class="lightbox-media">
             <img src="assets/Sample Photos/243/Travel_Lonesome.jpg" alt="" />
             <p>Arc-en-ciel</p>
           </div> -->
         </ul>
-        <div class="right">
-          <i class="fa-sharp fa-solid fa-xmark fa-3x" onclick="closeLightbox()"></i>
+        <div class="right" aria-label="next image">
+          <div aria-label="close dialog">
+            <i class="fa-sharp fa-solid fa-xmark fa-3x" onclick="closeLightbox()"></i>
+          </div>
           <i class="fa-sharp fa-solid fa-chevron-right fa-3x suivant"></i>
         </div>
       </div>
     </div>
-    <div id="contact_modal">
+    <div id="contact_modal" role="dialog">
       <div class="modal">
         <header class="modal-header">
           <!-- ajout div contact-name-->
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img
+            src="assets/icons/close.svg"
+            class="focusableElements closeModalForm"
+            onclick="closeModal()"
+            tabindex="0"
+            aria-label="fermeture duformulaire"
+          />
         </header>
         <form method="get">
           <div class="formData">
             <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" />
+            <input type="text" id="prenom" class="focusableElements" />
           </div>
           <div class="formData">
             <label for="nom">Nom</label>
-            <input type="text" id="nom" />
+            <input type="text" id="nom" class="focusableElements" />
           </div>
           <div class="formData">
             <label for="email">Email</label>
-            <input id="email" />
+            <input id="email" class="focusableElements" />
           </div>
           <div class="formData">
             <label for="message">Votre message</label>
-            <input type="text" class="message" id="message" />
+            <input type="text" class="message" id="message" class="focusableElements" />
           </div>
-          <button class="contact_button" type="submit">Envoyer</button>
+          <button class="contact_button focusableElements" type="submit">Envoyer</button>
         </form>
       </div>
     </div>

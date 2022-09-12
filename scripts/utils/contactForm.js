@@ -1,10 +1,21 @@
+const body = document.getElementsByTagName("body");
+const modal = document.getElementById("contact_modal");
+const main = document.getElementsByTagName("main");
+const firstFocusableElements = modal.getElementsByClassName("focusableElements")[0];
+console.log(firstFocusableElements);
+
+// console.log(body);
+
 function displayModal() {
-  const modal = document.getElementById("contact_modal");
+  main[0].setAttribute("aria-hidden", "true");
+  body[0].classList.add("noscroll");
   modal.style.display = "block";
+  firstFocusableElements.focus();
 }
 
 function closeModal() {
-  const modal = document.getElementById("contact_modal");
+  main[0].setAttribute("aria-hidden", "false");
+  body[0].classList.remove("noscroll");
   modal.style.display = "none";
 }
 
