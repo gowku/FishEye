@@ -60,6 +60,140 @@ class App {
       }
     }
 
+    //------------------dropdownmenu---------------------------
+    const SPACEBAR_KEY_CODE = [0, 32];
+    const ENTER_KEY_CODE = 13;
+    const DOWN_ARROW_KEY_CODE = 40;
+    const UP_ARROW_KEY_CODE = 38;
+    const ESCAPE_KEY_CODE = 27;
+
+    const list = document.querySelector(".dropdown__list");
+    const listContainer = document.querySelector(".dropdown__list-container");
+    const dropdownArrow = document.querySelector(".dropdown__arrow");
+    const listItems = document.querySelectorAll(".dropdown__list-item");
+    const dropdownSelectedNode = document.querySelector("#dropdown__selected");
+    const listItemIds = [];
+
+    dropdownSelectedNode.addEventListener("click", (e) => toggleListVisibility(e));
+    dropdownSelectedNode.addEventListener("keydown", (e) => toggleListVisibility(e));
+
+    listItems.forEach((item) => listItemIds.push(item.id));
+
+    listItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        setSelectedListItem(e);
+        closeList();
+      });
+
+      item.addEventListener("keydown", (e) => {
+        switch (e.keyCode) {
+          case ENTER_KEY_CODE:
+            setSelectedListItem(e);
+            closeList();
+            return;
+
+          case DOWN_ARROW_KEY_CODE:
+            focusNextListItem(DOWN_ARROW_KEY_CODE);
+            return;
+
+          case UP_ARROW_KEY_CODE:
+            focusNextListItem(UP_ARROW_KEY_CODE);
+            return;
+
+          case ESCAPE_KEY_CODE:
+            closeList();
+            return;
+
+          default:
+            return;
+        }
+      });
+    });
+
+    function setSelectedListItem(e) {
+      let selectedTextToAppend = document.createTextNode(e.target.innerText);
+      dropdownSelectedNode.innerHTML = null;
+      dropdownSelectedNode.appendChild(selectedTextToAppend);
+      // console.log(selectedTextToAppend);
+      document.querySelectorAll(".media").forEach((media) => {
+        media.remove();
+      });
+      switch (selectedTextToAppend.textContent) {
+        case "Popularité":
+          // console.log("pop");
+          // media = sortedPop;
+          printMedia(sortedPop());
+          break;
+        case "Date":
+          // console.log("date");
+          // media = sortedDate;
+          printMedia(sortedDate());
+          break;
+        case "Titre":
+          // console.log("titre");
+          // media = sortedTitle;
+          printMedia(sortedTitle());
+          break;
+
+        default:
+          // console.log("default");
+          // printMedia(media);
+          printMedia(sortedPop());
+
+          break;
+      }
+    }
+
+    function closeList() {
+      list.classList.remove("open");
+      dropdownArrow.classList.remove("expanded");
+      listContainer.setAttribute("aria-expanded", false);
+    }
+
+    function toggleListVisibility(e) {
+      let openDropDown = SPACEBAR_KEY_CODE.includes(e.keyCode) || e.keyCode === ENTER_KEY_CODE;
+
+      if (e.keyCode === ESCAPE_KEY_CODE) {
+        closeList();
+      }
+
+      if (e.type === "click" || openDropDown) {
+        list.classList.toggle("open");
+        dropdownArrow.classList.toggle("expanded");
+        listContainer.setAttribute("aria-expanded", list.classList.contains("open"));
+      }
+
+      if (e.keyCode === DOWN_ARROW_KEY_CODE) {
+        focusNextListItem(DOWN_ARROW_KEY_CODE);
+      }
+
+      if (e.keyCode === UP_ARROW_KEY_CODE) {
+        focusNextListItem(UP_ARROW_KEY_CODE);
+      }
+    }
+
+    function focusNextListItem(direction) {
+      const activeElementId = document.activeElement.id;
+      if (activeElementId === "dropdown__selected") {
+        document.querySelector(`#${listItemIds[0]}`).focus();
+      } else {
+        const currentActiveElementIndex = listItemIds.indexOf(activeElementId);
+        if (direction === DOWN_ARROW_KEY_CODE) {
+          const currentActiveElementIsNotLastItem = currentActiveElementIndex < listItemIds.length - 1;
+          if (currentActiveElementIsNotLastItem) {
+            const nextListItemId = listItemIds[currentActiveElementIndex + 1];
+            document.querySelector(`#${nextListItemId}`).focus();
+          }
+        } else if (direction === UP_ARROW_KEY_CODE) {
+          const currentActiveElementIsNotFirstItem = currentActiveElementIndex > 0;
+          if (currentActiveElementIsNotFirstItem) {
+            const nextListItemId = listItemIds[currentActiveElementIndex - 1];
+            document.querySelector(`#${nextListItemId}`).focus();
+          }
+        }
+      }
+    }
+
     //------------------ajout des medias-----------------------
     const printMedia = (media) => {
       for (let j = 0; j < media.length; j++) {
@@ -76,45 +210,53 @@ class App {
         }
       }
     };
+    printMedia(sortedPop());
 
-    let selectTriOption = document.querySelector(".dropdown-menu");
-    // selectTriOption.value = "Titre";
-    // console.log(selectTriOption.value);
+    // let selectTriOption = document.querySelector(".dropdown-menu");
+    // // selectTriOption.value = "Titre";
+    // // console.log(selectTriOption.value);
 
-    selectTriOption.addEventListener("input", (e) => {
-      // console.log(selectTriOption.value);
-      window.location.reload();
-      // printMedia(media);
+    // selectTriOption.addEventListener("input", (e) => {
+    //   console.log(selectTriOption.value);
+    //   // window.location.reload();
+    //   // printMedia(media);
+    //   // return selectTriOption.value;
 
-      return selectTriOption.value;
-    });
+    //   document.querySelectorAll(".media").forEach((media) => {
+    //     media.remove();
+    //   });
 
-    switch (selectTriOption.value) {
-      case "Popularité":
-        // media = sortedPop;
-        printMedia(sortedPop());
-        break;
-      case "Date":
-        // media = sortedDate;
-        printMedia(sortedDate());
-        break;
-      case "Titre":
-        // media = sortedTitle;
-        printMedia(sortedTitle());
-        break;
+    //   switch (selectTriOption.value) {
+    //     case "Popularité":
+    //       console.log("pop");
+    //       // media = sortedPop;
+    //       printMedia(sortedPop());
+    //       break;
+    //     case "Date":
+    //       console.log("date");
+    //       // media = sortedDate;
+    //       printMedia(sortedDate());
+    //       break;
+    //     case "Titre":
+    //       console.log("titre");
+    //       // media = sortedTitle;
+    //       printMedia(sortedTitle());
+    //       break;
 
-      default:
-        printMedia();
+    //     default:
+    //       console.log("default");
+    //       printMedia(media);
 
-        break;
-    }
-    // printMedia();
+    //       break;
+    //   }
+    // });
+
     // const item = document.activeElement;
     // console.log(item);
 
     //-------------------LIKES-------------------------------
     const btnLike = document.getElementsByClassName("btn-like");
-    // console.log(btnLike);
+    console.log(btnLike);
     const likes = document.getElementsByClassName("numberLikes");
     // console.log(likes[0].textContent);
     const totalLikes = document.querySelector(".totalLikes");
@@ -132,6 +274,7 @@ class App {
 
     for (let l = 0; l < btnLike.length; l++) {
       btnLike[l].addEventListener("click", (e) => {
+        console.log(e);
         e.preventDefault();
         // console.log(likes[l].attributes[1]);
 
@@ -183,7 +326,7 @@ class App {
     // console.log(focusableElements);
 
     function keyPress(e) {
-      console.log(e.target.className);
+      console.log(e.target);
 
       if (e.keyCode === 16) {
         if (document.activeElement === firstFocusableElements) {

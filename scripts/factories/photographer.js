@@ -6,6 +6,7 @@ function photographerFactory(data) {
 
   function getUserCardDOM() {
     const $wrapper = document.createElement("article");
+    $wrapper.classList.add("focusableIndex");
     // $wrapper.setAttribute("href", `./photographer.html?id=${id}`);
 
     const article = `

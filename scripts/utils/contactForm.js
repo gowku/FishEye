@@ -2,7 +2,7 @@ const body = document.getElementsByTagName("body");
 const modal = document.getElementById("contact_modal");
 const main = document.getElementsByTagName("main");
 const firstFocusableElements = modal.getElementsByClassName("focusableElements")[0];
-console.log(firstFocusableElements);
+// console.log(firstFocusableElements);
 
 // console.log(body);
 

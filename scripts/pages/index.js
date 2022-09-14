@@ -14,6 +14,22 @@ class App {
       // console.log(Template.getUserCardDOM());
       this.$photographersWrapper.appendChild(Template.getUserCardDOM());
     });
+
+    const allFocusableIndex = document.getElementsByClassName("focusableIndex");
+    const firstFocusableIndex = allFocusableIndex[0];
+    const lastFocusableIndex = allFocusableIndex[allFocusableIndex.length - 1];
+
+    document.addEventListener("keydown", (e) => {
+      console.log(e);
+
+      function nextPhotograph() {
+        if (e.keyCode === 39) {
+          console.log("je suis la");
+          firstFocusableIndex.focus();
+        }
+      }
+      nextPhotograph();
+    });
   }
 }
 const app = new App();

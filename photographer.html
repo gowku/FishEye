@@ -16,12 +16,28 @@
     <main id="main">
       <div class="photograph-header"></div>
       <div class="sort">
-        <label for="sort">Trier par</label>
+        <!-- <label for="sort">Trier par</label>
         <select id="sort" class="dropdown-menu">
+          <option value="filtre">Filtres</option>
           <option value="Popularité">Popularité</option>
           <option value="Date">Date</option>
           <option value="Titre">Titre</option>
-        </select>
+        </select> -->
+        <p id="dropdown-label" class="dropdown__label">Trier par</p>
+        <ul class="dropdown">
+          <li role="button" aria-labelledby="dropdown-label" id="dropdown__selected" tabindex="0">Popularité</li>
+          <svg class="dropdown__arrow" width="10" height="5" viewBox="0 0 10 5" fill-rule="evenodd">
+            <title>Open drop down</title>
+            <path d="M10 0L5 5 0 0z"></path>
+          </svg>
+          <li aria-expanded="false" role="list" class="dropdown__list-container">
+            <ul class="dropdown__list">
+              <li class="dropdown__list-item" tabindex="0" id="option-1">Popularité</li>
+              <li class="dropdown__list-item" tabindex="0" id="option-2">Date</li>
+              <li class="dropdown__list-item" tabindex="0" id="option-3">Titre</li>
+            </ul>
+          </li>
+        </ul>
       </div>
       <section class="media-container"></section>
     </main>
