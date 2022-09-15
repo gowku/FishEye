@@ -9,7 +9,7 @@ class photographMedia {
     $mediaWrapper.setAttribute("tabindex", "0");
 
     const photographImg = `
-      <img src="assets/Sample Photos/${this.media.photographerId}/${this.media.image}" alt=""  onclick="displayLightbox()" />
+      <img src="assets/Sample Photos/${this.media.photographerId}/${this.media.image}" alt="${this.media.image}" class='imgLightbox'   />
       <div class="media-name">
         <p>${this.media.title}</p>
         <div class="like">
@@ -20,7 +20,7 @@ class photographMedia {
     `;
 
     const photographVideo = `
-      <video controls width="350"  onclick="displayLightbox()">
+      <video controls width="350" class='imgLightbox' >
         <source src="assets/Sample Photos/${this.media.photographerId}/${this.media.video}" type="video/mp4" />
         </video>
         <div class="media-name video">

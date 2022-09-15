@@ -26,28 +26,15 @@ class App {
       });
     }
 
-    // const sortedPop = media.sort(function (a, b) {
-    //   return b.likes - a.likes;
-    // });
-    // console.log(sortedPop());
-
     function sortedDate() {
       return media.sort(function (a, b) {
         return new Date(b.date) - new Date(a.date);
       });
     }
 
-    // const sortedDate = media.sort(function (a, b) {
-    //   return new Date(b.date) - new Date(a.date);
-    // });
-    // console.log(sortedDate);
-
     function sortedTitle() {
       return media.sort((a, b) => a.title.localeCompare(b.title, "fr", { ignorePunctuation: true }));
     }
-
-    // const sortedTitle = media.sort((a, b) => a.title.localeCompare(b.title, "fr", { ignorePunctuation: true }));
-    // console.log(sortedTitle);
 
     //-------------ajout des infos photographe-------------------
     for (let i = 0; i < photographers.length; i++) {
@@ -120,24 +107,16 @@ class App {
       });
       switch (selectedTextToAppend.textContent) {
         case "Popularité":
-          // console.log("pop");
-          // media = sortedPop;
           printMedia(sortedPop());
           break;
         case "Date":
-          // console.log("date");
-          // media = sortedDate;
           printMedia(sortedDate());
           break;
         case "Titre":
-          // console.log("titre");
-          // media = sortedTitle;
           printMedia(sortedTitle());
           break;
 
         default:
-          // console.log("default");
-          // printMedia(media);
           printMedia(sortedPop());
 
           break;
@@ -209,156 +188,224 @@ class App {
           this.$lightboxWrapper.appendChild(TemplateLightbox.getLightboxMedia());
         }
       }
+
+      //-------------------LIKES-------------------------------
+
+      const btnLike = document.getElementsByClassName("btn-like");
+      // console.log(btnLike);
+      const likes = document.getElementsByClassName("numberLikes");
+      // console.log(likes[0].textContent);
+      const totalLikes = document.querySelector(".totalLikes");
+      // console.log(totalLikes.textContent);
+      // console.log(likes.length);
+      let total = 0;
+      function calcLikes() {
+        for (let k = 0; k < likes.length; k++) {
+          total += parseInt(likes[k].textContent);
+          // console.log(total);
+        }
+        totalLikes.textContent = total;
+      }
+      calcLikes();
+
+      for (let l = 0; l < btnLike.length; l++) {
+        btnLike[l].addEventListener("click", (e) => {
+          console.log(e);
+          e.preventDefault();
+          // console.log(likes[l].attributes[1]);
+
+          if (likes[l].attributes[1] == undefined) {
+            likes[l].textContent = parseInt(likes[l].textContent) + 1;
+            likes[l].setAttribute("data-like", "liked");
+            totalLikes.textContent = parseInt(totalLikes.textContent) + 1;
+          }
+        });
+      }
+
+      const imgLightbox = document.querySelectorAll(".imgLightbox");
+
+      imgLightbox.forEach((media) => {
+        media.addEventListener("click", (e) => {
+          e.preventDefault();
+          count = 0;
+          displayLightbox();
+        });
+      });
+
+      const items = document.getElementsByClassName("lightbox-media");
+      // console.log(items);
+      const nbSlide = items.length;
+      const suivant = document.querySelector(".suivant");
+      const precedent = document.querySelector(".precedent");
+
+      let count = 0;
+
+      function slideSuivante() {
+        console.log(count);
+        items[count].classList.remove("active");
+
+        if (count < nbSlide - 1) {
+          count++;
+        } else {
+          count = 0;
+        }
+
+        items[count].classList.add("active");
+      }
+      suivant.addEventListener("click", slideSuivante);
+
+      function slidePrecedente() {
+        console.log(items);
+        console.log(count);
+        items[count].classList.remove("active");
+
+        if (count > 0) {
+          count--;
+        } else {
+          count = nbSlide - 1;
+        }
+
+        items[count].classList.add("active");
+      }
+      precedent.addEventListener("click", slidePrecedente);
+
+      const focusableElements = modal.getElementsByClassName("focusableElements");
+      const firstFocusableElements = modal.getElementsByClassName("focusableElements")[0];
+      const lastFocusableElements = modal.getElementsByClassName("focusableElements")[focusableElements.length - 1];
+      // console.log(focusableElements);
+
+      function keyPress(e) {
+        console.log(e.target);
+
+        switch (e.keyCode) {
+          case 16:
+            if (document.activeElement === firstFocusableElements) {
+              e.preventDefault();
+              lastFocusableElements.focus();
+            } else {
+              if (document.activeElement === lastFocusableElements) {
+                e.preventDefault();
+                firstFocusableElements.focus();
+              }
+            }
+            break;
+          case 13:
+            if (e.target.className == "focusableElements closeModalForm") {
+              console.log("je suis la ici");
+              closeModal();
+            } else if (e.target.className == "contact_button focusableElements") {
+              console.log("je suis la");
+              submitForm(e);
+            } else if (e.target.className == "media") {
+              console.log("je suis ici");
+              displayLightbox(count);
+            }
+            break;
+          case 37:
+            slidePrecedente();
+            break;
+          case 39:
+            slideSuivante();
+            break;
+          case 27:
+            count = 0;
+            closeLightbox();
+            closeModal();
+            break;
+          default:
+            break;
+        }
+      }
+      document.addEventListener("keydown", keyPress);
     };
     printMedia(sortedPop());
 
-    // let selectTriOption = document.querySelector(".dropdown-menu");
-    // // selectTriOption.value = "Titre";
-    // // console.log(selectTriOption.value);
+    //--------------------CARROUSEL---------------------
 
-    // selectTriOption.addEventListener("input", (e) => {
-    //   console.log(selectTriOption.value);
-    //   // window.location.reload();
-    //   // printMedia(media);
-    //   // return selectTriOption.value;
+    // const items = document.getElementsByClassName("lightbox-media");
+    // // console.log(items);
+    // const nbSlide = items.length;
+    // const suivant = document.querySelector(".suivant");
+    // const precedent = document.querySelector(".precedent");
 
-    //   document.querySelectorAll(".media").forEach((media) => {
-    //     media.remove();
-    //   });
+    // let count = 0;
 
-    //   switch (selectTriOption.value) {
-    //     case "Popularité":
-    //       console.log("pop");
-    //       // media = sortedPop;
-    //       printMedia(sortedPop());
+    // function slideSuivante() {
+    //   console.log(count);
+    //   items[count].classList.remove("active");
+
+    //   if (count < nbSlide - 1) {
+    //     count++;
+    //   } else {
+    //     count = 0;
+    //   }
+
+    //   items[count].classList.add("active");
+    // }
+    // suivant.addEventListener("click", slideSuivante);
+
+    // function slidePrecedente() {
+    //   console.log(items);
+    //   console.log(count);
+    //   items[count].classList.remove("active");
+
+    //   if (count > 0) {
+    //     count--;
+    //   } else {
+    //     count = nbSlide - 1;
+    //   }
+
+    //   items[count].classList.add("active");
+    // }
+    // precedent.addEventListener("click", slidePrecedente);
+
+    // const focusableElements = modal.getElementsByClassName("focusableElements");
+    // const firstFocusableElements = modal.getElementsByClassName("focusableElements")[0];
+    // const lastFocusableElements = modal.getElementsByClassName("focusableElements")[focusableElements.length - 1];
+    // // console.log(focusableElements);
+
+    // function keyPress(e) {
+    //   console.log(e.target);
+
+    //   switch (e.keyCode) {
+    //     case 16:
+    //       if (document.activeElement === firstFocusableElements) {
+    //         e.preventDefault();
+    //         lastFocusableElements.focus();
+    //       } else {
+    //         if (document.activeElement === lastFocusableElements) {
+    //           e.preventDefault();
+    //           firstFocusableElements.focus();
+    //         }
+    //       }
     //       break;
-    //     case "Date":
-    //       console.log("date");
-    //       // media = sortedDate;
-    //       printMedia(sortedDate());
+    //     case 13:
+    //       if (e.target.className == "focusableElements closeModalForm") {
+    //         console.log("je suis la ici");
+    //         closeModal();
+    //       } else if (e.target.className == "contact_button focusableElements") {
+    //         console.log("je suis la");
+    //         submitForm(e);
+    //       } else if (e.target.className == "media") {
+    //         console.log("je suis ici");
+    //         displayLightbox(count);
+    //       }
     //       break;
-    //     case "Titre":
-    //       console.log("titre");
-    //       // media = sortedTitle;
-    //       printMedia(sortedTitle());
+    //     case 37:
+    //       slidePrecedente();
     //       break;
-
+    //     case 39:
+    //       slideSuivante();
+    //       break;
+    //     case 27:
+    //       closeLightbox(count);
+    //       closeModal();
+    //       break;
     //     default:
-    //       console.log("default");
-    //       printMedia(media);
-
     //       break;
     //   }
-    // });
-
-    // const item = document.activeElement;
-    // console.log(item);
-
-    //-------------------LIKES-------------------------------
-    const btnLike = document.getElementsByClassName("btn-like");
-    console.log(btnLike);
-    const likes = document.getElementsByClassName("numberLikes");
-    // console.log(likes[0].textContent);
-    const totalLikes = document.querySelector(".totalLikes");
-    // console.log(totalLikes.textContent);
-    // console.log(likes.length);
-    let total = 0;
-    function calcLikes() {
-      for (let k = 0; k < likes.length; k++) {
-        total += parseInt(likes[k].textContent);
-        // console.log(total);
-      }
-      totalLikes.textContent = total;
-    }
-    calcLikes();
-
-    for (let l = 0; l < btnLike.length; l++) {
-      btnLike[l].addEventListener("click", (e) => {
-        console.log(e);
-        e.preventDefault();
-        // console.log(likes[l].attributes[1]);
-
-        if (likes[l].attributes[1] == undefined) {
-          likes[l].textContent = parseInt(likes[l].textContent) + 1;
-          likes[l].setAttribute("data-like", "liked");
-          totalLikes.textContent = parseInt(totalLikes.textContent) + 1;
-        }
-      });
-    }
-    //--------------------CARROUSEL---------------------
-    const items = document.getElementsByTagName("li");
-    const nbSlide = items.length;
-    const suivant = document.querySelector(".suivant");
-    const precedent = document.querySelector(".precedent");
-
-    let count = 0;
-
-    function slideSuivante() {
-      // console.log(count);
-      items[count].classList.remove("active");
-
-      if (count < nbSlide - 1) {
-        count++;
-      } else {
-        count = 0;
-      }
-
-      items[count].classList.add("active");
-    }
-    suivant.addEventListener("click", slideSuivante);
-
-    function slidePrecedente() {
-      items[count].classList.remove("active");
-
-      if (count > 0) {
-        count--;
-      } else {
-        count = nbSlide - 1;
-      }
-
-      items[count].classList.add("active");
-    }
-    precedent.addEventListener("click", slidePrecedente);
-
-    const focusableElements = modal.getElementsByClassName("focusableElements");
-    const firstFocusableElements = modal.getElementsByClassName("focusableElements")[0];
-    const lastFocusableElements = modal.getElementsByClassName("focusableElements")[focusableElements.length - 1];
-    // console.log(focusableElements);
-
-    function keyPress(e) {
-      console.log(e.target);
-
-      if (e.keyCode === 16) {
-        if (document.activeElement === firstFocusableElements) {
-          lastFocusableElements.focus();
-          e.preventDefault();
-        }
-      } else {
-        if (document.activeElement === lastFocusableElements) {
-          firstFocusableElements.focus();
-          e.preventDefault();
-        }
-      }
-
-      if (e.target.className == "focusableElements closeModalForm" && e.keyCode === 13) {
-        closeModal();
-      }
-      // console.log(document.activeElement.classList);
-
-      if (e.target.className == "media" && e.keyCode === 13) {
-        displayLightbox();
-      }
-
-      if (e.keyCode === 37) {
-        slidePrecedente();
-      } else if (e.keyCode === 39) {
-        slideSuivante();
-      } else if (e.keyCode === 27) {
-        closeLightbox();
-        closeModal();
-      }
-    }
-    document.addEventListener("keydown", keyPress);
+    // }
+    // document.addEventListener("keydown", keyPress);
   }
 }
 const app = new App();

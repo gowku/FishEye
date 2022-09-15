@@ -91,7 +91,29 @@ message.addEventListener("input", () => {
   checkmessage();
 });
 
-btnSubmit.addEventListener("click", (e) => {
+// btnSubmit.addEventListener("click", (e) => {
+//   e.preventDefault();
+
+//   if (checkprenom() && checknom() && checkemail() && checkmessage()) {
+//     console.log({
+//       form: {
+//         prenom: prenom.value,
+//         nom: nom.value,
+//         email: email.value,
+//         message: message.value,
+//       },
+//     });
+//     prenom.value = "";
+//     nom.value = "";
+//     email.value = "";
+//     message.value = "";
+//     closeModal();
+//   } else {
+//     console.log(false);
+//   }
+// });
+
+function submitForm(e) {
   e.preventDefault();
 
   if (checkprenom() && checknom() && checkemail() && checkmessage()) {
@@ -111,4 +133,5 @@ btnSubmit.addEventListener("click", (e) => {
   } else {
     console.log(false);
   }
-});
+}
+btnSubmit.addEventListener("click", submitForm);
