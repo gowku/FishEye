@@ -73,3 +73,9 @@ class lightboxMedia extends photographMedia {
     return $lightboxMediaWrapper;
   }
 }
+
+let newHtmlA;
+for (let i = 0; i < nombreCanape; i++) {
+  newHtmlA += document.createElement("a");
+}
+htmlIdItems.appendChild(newHtmlA);
