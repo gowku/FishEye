@@ -275,19 +275,24 @@ class App {
       precedent.addEventListener("click", slidePrecedente);
 
       const focusableElements = modal.getElementsByClassName("focusableElements");
+      console.log(focusableElements);
       const firstFocusableElements = modal.getElementsByClassName("focusableElements")[0];
       const lastFocusableElements = modal.getElementsByClassName("focusableElements")[focusableElements.length - 1];
-      // console.log(focusableElements);
+      console.log(firstFocusableElements);
+      console.log(lastFocusableElements);
+      console.log(document.activeElement);
 
       function keyPress(e) {
-        console.log(e.target);
+        // console.log(e.target);
 
         switch (e.keyCode) {
           case 16:
             if (document.activeElement === firstFocusableElements) {
+              console.log("je passe ici");
               e.preventDefault();
               lastFocusableElements.focus();
             } else {
+              console.log("je passe la");
               if (document.activeElement === lastFocusableElements) {
                 e.preventDefault();
                 firstFocusableElements.focus();
