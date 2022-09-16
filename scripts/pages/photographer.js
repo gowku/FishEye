@@ -102,7 +102,12 @@ class App {
       dropdownSelectedNode.innerHTML = null;
       dropdownSelectedNode.appendChild(selectedTextToAppend);
       // console.log(selectedTextToAppend);
-      document.querySelectorAll(".media").forEach((media) => {
+
+      // a chaque fois que le filtre change on supprime les anciens medias et ceux de la lightbox
+      const lightboxMediaToRemove = document.getElementsByClassName("lightbox-media");
+      const mediasToRemove = document.getElementsByClassName("media");
+      const totalToRemove = [...lightboxMediaToRemove, ...mediasToRemove];
+      totalToRemove.forEach((media) => {
         media.remove();
       });
       switch (selectedTextToAppend.textContent) {
